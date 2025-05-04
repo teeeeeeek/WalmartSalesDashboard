@@ -6,7 +6,7 @@ from io import BytesIO
 # Load data
 @st.cache_data
 def load_data():
-    return pd.read_csv("C:/Users/KarteekPC/Documents/ALY6040Module4/WalmartPerformanceDataset.csv")
+    return pd.read_csv("WalmartPerformanceDataset.csv")
 
 df = load_data()
 
