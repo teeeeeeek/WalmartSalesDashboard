@@ -49,18 +49,14 @@ st.plotly_chart(px.bar(region_profit, x="Region", y="Sales", title="Sales by Reg
 st.plotly_chart(px.scatter(filtered_df, x="Inventory_Units", y="Sales", color="Department", title="Inventory vs Sales"))
 
 # Download filtered data
-def to_excel(df):
-    output = BytesIO()
-    writer = pd.ExcelWriter(output, engine='xlsxwriter')
-    df.to_excel(writer, index=False, sheet_name='Sheet1')
-    writer.close()
-    return output.getvalue()
+import io
 
+csv = filtered_df.to_csv(index=False)
 st.download_button(
-    label="Download Filtered Data as Excel",
-    data=to_excel(filtered_df),
-    file_name="filtered_walmart_data.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    label="Download Filtered Data as CSV",
+    data=csv,
+    file_name="filtered_walmart_data.csv",
+    mime="text/csv"
 )
 
 # Footer
